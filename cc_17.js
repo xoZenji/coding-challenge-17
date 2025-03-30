@@ -8,7 +8,7 @@ class Customer {
 
     addPurchase(amount) {
         this.purchaseHistory.push(amount);
-    }
+    } // Adds a purchase to the customers purchase history.
 
     getTotalSpent() {
         return this.purchaseHistory.reduce((total, amount) => total + amount, 0);
@@ -26,11 +26,11 @@ class SalesRep {
     constructor(name) {
         this.name = name
         this.clients = [];
-    }
+    } // Created the sales rep class
 
     addClient(customer) {
         this.clients.push(customer);
-    }
+    } // Adds a new client to the sales rep's list of clients
     getClientTotal(name) {
         const client = this.clients.find(client => client.name === name);
         if (client) {
@@ -38,12 +38,12 @@ class SalesRep {
         } else {
             return `Client ${name} cannot be found.`;
         }
-    }
-}
+    } // Returns the total amount spent by the client
+} 
 
 const salesRep = new SalesRep("Obi Wan Kenobi");
 salesRep.addClient(customer01);
-salesRep.getClientTotal("Yoda"); // Returns the total amount spent by the client
+salesRep.getClientTotal("Yoda"); // Returns the total amount spent by the client.
 
 // Task 3: Extended VIPCustomer Class
 class VIPCustomer extends Customer {
@@ -55,8 +55,8 @@ class VIPCustomer extends Customer {
     getTotalSpent() {
         const totalSpent = super.getTotalSpent();
         return totalSpent * 0.1;
-        }
-    };
+        } // Returns the total amount spent by the customer with a 10% discount.
+    }; // Created the VIP customer class
 
     const VIP1 = new VIPCustomer("Darth Vader", "vaderrocks@sith.org", "gold");
     VIP1.addPurchase(7500);
@@ -67,16 +67,16 @@ class VIPCustomer extends Customer {
     VIP2.addPurchase(750000);
     console.log(`${VIP2.name} spent this much on his new death star: $${VIP2.getTotalSpent()}`);
 
-    //Task 4: Finalized Reporting System
-const totalRevenue = salesRep.clients.reduce((total, client) => total + client.getTotalSpent(),0);
+//Task 4: Finalized Reporting System
+const totalRevenue = salesRep.clients.reduce((total, client) => total + client.getTotalSpent(),0); // Calculates the total revenue earned by the sales rep.
 console.log(`Total revenue earned by ${salesRep.name} is $${totalRevenue}`);
 
-const highRollers = salesRep.clients.filter(client => client.getTotalSpent() > 500);
+const highRollers = salesRep.clients.filter(client => client.getTotalSpent() > 500); // Filters out all customers who spent more than $500.
 console.log(`Big Ballers: ${highRollers.map(client => client.name).join(", ")}`);
 
 const customerRevenue = salesRep.clients.map(client => ({
     Name: client.name,
     TotalSpent: client.getTotalSpent()
-}));
+})); // Returns customer name and total spent.
 
 console.log("Customer Revenue: ", customerRevenue);
