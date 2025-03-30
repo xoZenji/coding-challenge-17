@@ -16,8 +16,8 @@ class Customer {
 }; // Created the customer class
 
 const customer01 = new Customer("Yoda", "iamgreen@jedisrock.com");
-customer01.addPurchase(345);
-customer01.addPurchase(273);
+customer01.addPurchase(225);
+customer01.addPurchase(175);
 customer01.getTotalSpent(); // Returns the total amount spent by the customer
 console.log(`${customer01.name} spent this much oh his new walking stick: $${customer01.getTotalSpent()}`);
 
@@ -66,3 +66,17 @@ class VIPCustomer extends Customer {
     VIP2.addPurchase(250000);
     VIP2.addPurchase(750000);
     console.log(`${VIP2.name} spent this much on his new death star: $${VIP2.getTotalSpent()}`);
+
+    //Task 4: Finalized Reporting System
+const totalRevenue = salesRep.clients.reduce((total, client) => total + client.getTotalSpent(),0);
+console.log(`Total revenue earned by ${salesRep.name} is $${totalRevenue}`);
+
+const highRollers = salesRep.clients.filter(client => client.getTotalSpent() > 500);
+console.log(`Big Ballers: ${highRollers.map(client => client.name).join(", ")}`);
+
+const customerRevenue = salesRep.clients.map(client => ({
+    Name: client.name,
+    TotalSpent: client.getTotalSpent()
+}));
+
+console.log("Customer Revenue: ", customerRevenue);
