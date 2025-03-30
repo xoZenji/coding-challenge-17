@@ -44,3 +44,25 @@ class SalesRep {
 const salesRep = new SalesRep("Obi Wan Kenobi");
 salesRep.addClient(customer01);
 salesRep.getClientTotal("Yoda"); // Returns the total amount spent by the client
+
+// Task 3: Extended VIPCustomer Class
+class VIPCustomer extends Customer {
+    constructor(name, email, vipLevel) {
+        super(name,email);
+        this.vipLevel = vipLevel;
+    }
+
+    getTotalSpent() {
+        const totalSpent = super.getTotalSpent();
+        return totalSpent * 0.1;
+        }
+    };
+
+    const VIP1 = new VIPCustomer("Darth Vader", "vaderrocks@sith.org", "gold");
+    VIP1.addPurchase(7500);
+    VIP1.addPurchase(2500);
+    console.log(`${VIP1.name} spent this much on his new lightsaber: $${VIP1.getTotalSpent()}`);
+    const VIP2 = new VIPCustomer("Emperor Palpatine","tinglefingers@imdead.org", "platinum");
+    VIP2.addPurchase(250000);
+    VIP2.addPurchase(750000);
+    console.log(`${VIP2.name} spent this much on his new death star: $${VIP2.getTotalSpent()}`);
